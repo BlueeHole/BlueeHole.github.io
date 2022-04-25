@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>生活 on Murphy&#39;s Blog</title>
+    <link>https://BlueeHole.github.io/categories/%E7%94%9F%E6%B4%BB/</link>
+    <description>Recent content in 生活 on Murphy&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 24 Apr 2022 15:37:29 +0800</lastBuildDate><atom:link href="https://BlueeHole.github.io/categories/%E7%94%9F%E6%B4%BB/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>CV</title>
+      <link>https://BlueeHole.github.io/post/cv/</link>
+      <pubDate>Sun, 24 Apr 2022 15:37:29 +0800</pubDate>
+      
+      <guid>https://BlueeHole.github.io/post/cv/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

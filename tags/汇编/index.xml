@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>汇编 on Murphy&#39;s Blog</title>
+    <link>https://BlueeHole.github.io/tags/%E6%B1%87%E7%BC%96/</link>
+    <description>Recent content in 汇编 on Murphy&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 24 Apr 2022 17:03:29 +0800</lastBuildDate><atom:link href="https://BlueeHole.github.io/tags/%E6%B1%87%E7%BC%96/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>汇编</title>
+      <link>https://BlueeHole.github.io/post/%E6%B1%87%E7%BC%96/</link>
+      <pubDate>Sun, 24 Apr 2022 17:03:29 +0800</pubDate>
+      
+      <guid>https://BlueeHole.github.io/post/%E6%B1%87%E7%BC%96/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>
