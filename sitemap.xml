@@ -2,34 +2,46 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://BlueeHole.github.io/post/chapter2introducing_shell/</loc>
-    <lastmod>2022-04-25T11:05:01+08:00</lastmod>
-  </url><url>
     <loc>https://BlueeHole.github.io/categories/</loc>
+    <lastmod>2022-04-28T21:48:06+08:00</lastmod>
+  </url><url>
+    <loc>https://BlueeHole.github.io/</loc>
+    <lastmod>2022-04-28T21:48:06+08:00</lastmod>
+  </url><url>
+    <loc>https://BlueeHole.github.io/tags/pcl/</loc>
+    <lastmod>2022-04-28T21:48:06+08:00</lastmod>
+  </url><url>
+    <loc>https://BlueeHole.github.io/post/pcl_1_intro/</loc>
+    <lastmod>2022-04-28T21:48:06+08:00</lastmod>
+  </url><url>
+    <loc>https://BlueeHole.github.io/post/</loc>
+    <lastmod>2022-04-28T21:48:06+08:00</lastmod>
+  </url><url>
+    <loc>https://BlueeHole.github.io/tags/</loc>
+    <lastmod>2022-04-28T21:48:06+08:00</lastmod>
+  </url><url>
+    <loc>https://BlueeHole.github.io/categories/%E6%8A%80%E6%9C%AF/</loc>
+    <lastmod>2022-04-28T21:48:06+08:00</lastmod>
+  </url><url>
+    <loc>https://BlueeHole.github.io/categories/%E6%9C%BA%E5%99%A8%E4%BA%BA/</loc>
+    <lastmod>2022-04-28T21:48:06+08:00</lastmod>
+  </url><url>
+    <loc>https://BlueeHole.github.io/tags/%E7%82%B9%E4%BA%91/</loc>
+    <lastmod>2022-04-28T21:48:06+08:00</lastmod>
+  </url><url>
+    <loc>https://BlueeHole.github.io/post/chapter2introducing_shell/</loc>
     <lastmod>2022-04-25T11:05:01+08:00</lastmod>
   </url><url>
     <loc>https://BlueeHole.github.io/categories/linux/</loc>
     <lastmod>2022-04-25T11:05:01+08:00</lastmod>
   </url><url>
-    <loc>https://BlueeHole.github.io/</loc>
-    <lastmod>2022-04-25T11:05:01+08:00</lastmod>
-  </url><url>
-    <loc>https://BlueeHole.github.io/post/</loc>
-    <lastmod>2022-04-25T11:05:01+08:00</lastmod>
-  </url><url>
     <loc>https://BlueeHole.github.io/tags/shell/</loc>
-    <lastmod>2022-04-25T11:05:01+08:00</lastmod>
-  </url><url>
-    <loc>https://BlueeHole.github.io/tags/</loc>
     <lastmod>2022-04-25T11:05:01+08:00</lastmod>
   </url><url>
     <loc>https://BlueeHole.github.io/categories/%E5%AD%A6%E4%B9%A0/</loc>
     <lastmod>2022-04-25T11:05:01+08:00</lastmod>
   </url><url>
     <loc>https://BlueeHole.github.io/tags/arm/</loc>
-    <lastmod>2022-04-24T17:03:29+08:00</lastmod>
-  </url><url>
-    <loc>https://BlueeHole.github.io/categories/%E6%8A%80%E6%9C%AF/</loc>
     <lastmod>2022-04-24T17:03:29+08:00</lastmod>
   </url><url>
     <loc>https://BlueeHole.github.io/tags/%E6%B1%87%E7%BC%96/</loc>

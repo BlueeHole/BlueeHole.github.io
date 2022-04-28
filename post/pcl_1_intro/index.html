@@ -17,7 +17,7 @@
   },
   "name":"Murphy\u0027s Blog",
   "description":"",
-  "url":"https:\/\/BlueeHole.github.io\/post\/chapter2introducing_shell\/",
+  "url":"https:\/\/BlueeHole.github.io\/post\/pcl_1_intro\/",
   "keywords":"[tech]"
 }
 
@@ -33,32 +33,34 @@
 
 <meta property="og:description" content="">
 <meta property="og:type" content="article">
-<meta property="og:title" content="【第二章】Introducing Shell Scripts">
-<meta name="twitter:title" content="【第二章】Introducing Shell Scripts">
-<meta property="og:url" content="https://BlueeHole.github.io/post/chapter2introducing_shell/">
-<meta property="twitter:url" content="https://BlueeHole.github.io/post/chapter2introducing_shell/">
+<meta property="og:title" content="PCL笔记1：Introduction">
+<meta name="twitter:title" content="PCL笔记1：Introduction">
+<meta property="og:url" content="https://BlueeHole.github.io/post/pcl_1_intro/">
+<meta property="twitter:url" content="https://BlueeHole.github.io/post/pcl_1_intro/">
 <meta property="og:site_name" content="Murphy&#39;s Blog">
 <meta property="og:description" content="">
 <meta name="twitter:description" content="">
 <meta property="og:locale" content="en-us">
 
   
-    <meta property="article:published_time" content="2022-04-25T11:05:01">
+    <meta property="article:published_time" content="2022-04-28T21:48:06">
   
   
-    <meta property="article:modified_time" content="2022-04-25T11:05:01">
+    <meta property="article:modified_time" content="2022-04-28T21:48:06">
   
-  
-  
-    
-      <meta property="article:section" content="学习">
-    
-      <meta property="article:section" content="Linux">
-    
   
   
     
-      <meta property="article:tag" content="Shell">
+      <meta property="article:section" content="技术">
+    
+      <meta property="article:section" content="机器人">
+    
+  
+  
+    
+      <meta property="article:tag" content="点云">
+    
+      <meta property="article:tag" content="PCL">
     
   
 
@@ -79,14 +81,14 @@
 
 
 
-    <title>【第二章】Introducing Shell Scripts</title>
+    <title>PCL笔记1：Introduction</title>
 
     <link rel="icon" href="https://BlueeHole.github.io/favicon.png">
     
 
     
 
-    <link rel="canonical" href="https://BlueeHole.github.io/post/chapter2introducing_shell/">
+    <link rel="canonical" href="https://BlueeHole.github.io/post/pcl_1_intro/">
 
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -236,15 +238,15 @@
             <div class="post-header main-content-wrap text-left">
   
     <h1 class="post-title">
-      【第二章】Introducing Shell Scripts
+      PCL笔记1：Introduction
     </h1>
   
   
   <div class="postShorten-meta post-meta">
     
-      <time datetime="2022-04-25T11:05:01&#43;08:00">
+      <time datetime="2022-04-28T21:48:06&#43;08:00">
         
-  April 25, 2022
+  April 28, 2022
 
       </time>
     
@@ -253,9 +255,9 @@
   
     <span>in</span>
     
-      <a class="category-link" href="https://BlueeHole.github.io/categories/%e5%ad%a6%e4%b9%a0">学习</a>, 
+      <a class="category-link" href="https://BlueeHole.github.io/categories/%e6%8a%80%e6%9c%af">技术</a>, 
     
-      <a class="category-link" href="https://BlueeHole.github.io/categories/linux">Linux</a>
+      <a class="category-link" href="https://BlueeHole.github.io/categories/%e6%9c%ba%e5%99%a8%e4%ba%ba">机器人</a>
     
   
 
@@ -265,69 +267,133 @@
           
           <div class="post-content markdown">
             <div class="main-content-wrap">
-              <blockquote>
-<p><em>Beginning Shell Scripting</em> 的整理笔记，作为每日晨读</p>
+              <h2 id="pcl简介">PCL简介</h2>
+<ul>
+<li>处理2D/3D点云，包括I/O、滤波、特征提取、配准、可视化，以及一些点云变换等底层操作</li>
+<li>BSD开源协议</li>
+<li>以库的形式给出，不同模块可以分别编译，是通过<code>ccmake ..</code> 设置一些CMake变量实现</li>
+</ul>
+<h2 id="数据格式">数据格式</h2>
+<ul>
+<li>
+<p>PointXYZ</p>
+</li>
+<li>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span>  <span style="color:#66d9ef">struct</span> PointXYZ{
+</span></span><span style="display:flex;"><span>  	<span style="color:#66d9ef">float</span> x, y, z, padding;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">/*The most efficient way for SSE-enabled processors, is to store the 3 dimensions as floats, followed by an extra float for padding*/</span>
+</span></span></code></pre></div></li>
+<li></li>
+</ul>
+<h2 id="pcl的几大模块">PCL的几大模块</h2>
+<h3 id="io">I/O</h3>
+<ul>
+<li>
+<p>PCD格式</p>
+<ul>
+<li>
+<p>并不是“为了发明儿发明”，而是之前的有各种各样的缺点</p>
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/PLY_(file_format)">PLY</a> - a polygon file format, developed at Stanford University by Turk et al</li>
+<li><a href="http://en.wikipedia.org/wiki/STL_(file_format)">STL</a> - a file format native to the stereolithography CAD software created by 3D Systems</li>
+<li><a href="http://en.wikipedia.org/wiki/Wavefront_.obj_file">OBJ</a> - a geometry definition file format first developed by Wavefront Technologies</li>
+<li><a href="http://en.wikipedia.org/wiki/X3D">X3D</a> - the ISO standard XML-based file format for representing 3D computer graphics data</li>
+</ul>
+</li>
+<li>
+<p>格式说明</p>
+<ul>
+<li><code>FIELDS</code>：说明点云含有的信息，可能是xyz+{color|surface mode}</li>
+<li>重点是区分<code>organized</code>和<code>unorganized</code>的点云，前者表示有结构的，即既有宽又有高；后者高是1（只有一行数据）</li>
+<li><code>VIEWPOINT</code>：观测点，可以理解为相机的位置，默认无平移无旋转</li>
+<li><code>DATA</code>：数据真正存放的地方</li>
+</ul>
+</li>
+<li>
+<p>优点</p>
+</li>
+</ul>
+<blockquote>
+<ol>
+<li>
+<p>the ability to <strong><!-- raw HTML omitted -->store and process organized point cloud datasets<!-- raw HTML omitted --></strong> – this is of extreme importance for real time applications, and research areas such as augmented reality, robotics, etc;</p>
+</li>
+<li>
+<p>binary mmap/munmap data types are the fastest possible way of loading and saving data to disk.</p>
+</li>
+<li>
+<p>storing different data types (all primitives supported: char, short, int, float, double) allows the point cloud data to be flexible and efficient with respect to storage and processing. Invalid point dimensions are usually stored as NAN types.</p>
+</li>
+<li>
+<p>n-D histograms for feature descriptors – very important for 3D perception/computer vision applications</p>
+</li>
+</ol>
 </blockquote>
-<h2 id="shell并不是唯一的脚本语言">Shell并不是唯一的脚本语言</h2>
-<ul>
-<li>Unix系统默认的shell是<strong>Bourne-again SHell</strong>，作者的名字</li>
-<li>诸如Python，Perl（长于格式化文件输出），Tcl，DOS（DOS有诸多缺点，比如不支持通配符，不支持重定向输入，我当时写那个批量运行python脚本的bat文件时遇到过）</li>
-<li>如何选择适合自己的脚本语言</li>
-</ul>
-<h2 id="编辑shell的工具">编辑Shell的工具</h2>
-<ul>
-<li>vim</li>
-</ul>
-<h2 id="基本语法">基本语法</h2>
-<ul>
-<li>
-<p>echo</p>
-<ul>
-<li><code>echo -n &quot;xxx&quot;</code>可以去掉换行符，默认有换行</li>
-</ul>
 </li>
 <li>
-<p>变量</p>
-<ul>
-<li>
-<p>总结：存的时候不加<code>$</code>，取的时候加</p>
-</li>
-<li>
-<p>赋值</p>
-<ul>
-<li>不像DOS，需要加<code>set</code>，Bash直接<code>variable=value</code>即可，注意<strong>等号两端不能有空格</strong></li>
-<li>如果没空格不用加双引号，有空格的话需要加</li>
-<li><em>可以用read读入</em>，比如<code>read DIR</code></li>
-</ul>
-</li>
-<li>
-<p>使用</p>
-<ul>
-<li>
-<p>加一个<code>$</code>，变量就会<strong>如C语言的#define一般原地展开，无论它是什么</strong>（好像if的时候有例外，记得以前碰到过，这本书第三章会讲）</p>
-</li>
-<li>
-<p>因此，可以用变量来组成命令</p>
-</li>
-<li>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>  LS<span style="color:#f92672">=</span>ls
-</span></span><span style="display:flex;"><span>  DIR<span style="color:#f92672">=</span>/$HOME
-</span></span><span style="display:flex;"><span>  $LS $DIR
-</span></span></code></pre></div><pre tabindex="0"><code></code></pre></li>
-</ul>
+<p>OpenNI驱动：用于从支持OpenNI协议的设备读取点云</p>
 </li>
 </ul>
-</li>
-<li>
-<p>注释</p>
+<h3 id="数据结构">数据结构</h3>
+<p>KD-Tree</p>
 <ul>
-<li>不要使用insulting connotations（有侮辱性内涵的内容），不然会名垂青史。当时MacOS发布，有些脚本的注释中用到<code>luser</code>（loser的谐音），有人投诉原文中说<code>keeping the lusers from doing something stupid</code>，但实际上它是<code>local user</code>的缩写</li>
+<li>K维二叉树（以二维举例来理解即可）</li>
+<li>优点：可以<code>O()</code>地查询K近邻</li>
 </ul>
-</li>
+<p>Octree</p>
+<ul>
+<li>八叉树</li>
+<li>和KD-Tree相比？可以实现降采样，切分</li>
+</ul>
+<h3 id="滤波器">滤波器</h3>
+<ul>
+<li>能够滤除外点（主要是测量误差引起=&gt;<em>菜鸟无人车在雨雪雾天气</em>）</li>
+<li>基于的是概率的方法，即对于一个点检测它周围点的分布，如果发现不符合概率分布就剔除</li>
+</ul>
+<blockquote>
+<p>​	By assuming that the resulting distribution is Gaussian with a mean and a standard deviation, all points whose mean distances are outside an interval defined by the global distances mean and standard deviation can be considered as outliers and trimmed from the dataset.</p>
+</blockquote>
+<h3 id="features-keypoints-surface检测">Features, keypoints, Surface检测</h3>
+<ul>
+<li>特征检测
+<ul>
 <li>
-<p>Backslash用于continue line（反斜杠可以延续一行）</p>
+<!-- raw HTML omitted -->
+</li>
+<li>对于一个点P，找它的K邻近邻居们，然后做特征值分解，求法向量（<em><strong>法向量就代表了特征</strong></em>）</li>
+<li>特征值分解的原理？</li>
+</ul>
+</li>
+<li>关键点检测
+<ul>
+<li>NARF keypoints</li>
+</ul>
+</li>
+<li>表面检测
+<ul>
+<li>随机采样一致性（RANSAC算法）</li>
+<li>有一个模型（比如平面、圆柱……），先假定一些点是符合这个模型，然后算其它所有点和这些“内点”的差距，如果小于一定值就可以认为这些内点是真的内点（真的符合这个模型）</li>
+<li>回顾：戴老师讲过的霍夫变换也可以实现检测</li>
+</ul>
 </li>
 </ul>
+<h3 id="segmentation">Segmentation</h3>
+<ul>
+<li>聚类，分出桌子和地面</li>
+</ul>
+<h3 id="registration">Registration</h3>
+<ul>
+<li>点云配准，想一想视觉里两幅图像拼接的原理</li>
+</ul>
+<blockquote>
+<p>​	the key idea is to identify <!-- raw HTML omitted -->corresponding points<!-- raw HTML omitted --> between the data sets and find a transformation that minimizes the distance (alignment error) between corresponding points.</p>
+</blockquote>
+<h3 id="深度图的处理">深度图的处理</h3>
+<ul>
+<li>可以深度图转点云</li>
+</ul>
+<h3 id="visualization">Visualization</h3>
               
 
 
@@ -341,7 +407,9 @@
                   <div class="post-footer-tags">
                     <span class="text-color-light text-small">TAGGED IN</span><br/>
                     
-  <a class="tag tag--primary tag--small" href="https://BlueeHole.github.io/tags/shell/">Shell</a>
+  <a class="tag tag--primary tag--small" href="https://BlueeHole.github.io/tags/%E7%82%B9%E4%BA%91/">点云</a>
+
+  <a class="tag tag--primary tag--small" href="https://BlueeHole.github.io/tags/pcl/">PCL</a>
 
                   </div>
                 
@@ -354,7 +422,7 @@
       
         <li class="post-action">
           
-            <a class="post-action-btn btn btn--default tooltip--top" href="https://BlueeHole.github.io/post/pcl_1_intro/" data-tooltip="PCL笔记1：Introduction" aria-label="NEXT: PCL笔记1：Introduction">
+            <a class="post-action-btn btn btn--disabled">
           
               <i class="fa fa-angle-left"></i>
               <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
@@ -362,7 +430,7 @@
         </li>
         <li class="post-action">
           
-            <a class="post-action-btn btn btn--default tooltip--top" href="https://BlueeHole.github.io/post/%E6%B1%87%E7%BC%96/" data-tooltip="汇编" aria-label="PREVIOUS: 汇编">
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://BlueeHole.github.io/post/chapter2introducing_shell/" data-tooltip="【第二章】Introducing Shell Scripts" aria-label="PREVIOUS: 【第二章】Introducing Shell Scripts">
           
               <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
               <i class="fa fa-angle-right"></i>
@@ -380,19 +448,19 @@
     </li>
     
       <li class="post-action hide-xs">
-        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://BlueeHole.github.io/post/chapter2introducing_shell/" title="Share on Facebook" aria-label="Share on Facebook">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://BlueeHole.github.io/post/pcl_1_intro/" title="Share on Facebook" aria-label="Share on Facebook">
           <i class="fab fa-facebook-square" aria-hidden="true"></i>
         </a>
       </li>
     
       <li class="post-action hide-xs">
-        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://BlueeHole.github.io/post/chapter2introducing_shell/" title="Share on Twitter" aria-label="Share on Twitter">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://BlueeHole.github.io/post/pcl_1_intro/" title="Share on Twitter" aria-label="Share on Twitter">
           <i class="fab fa-twitter" aria-hidden="true"></i>
         </a>
       </li>
     
       <li class="post-action hide-xs">
-        <a class="post-action-btn btn btn--default" target="new" href="https://www.linkedin.com/sharing/share-offsite/?url=https://BlueeHole.github.io/post/chapter2introducing_shell/" title="Share on Linkedin" aria-label="Share on Linkedin">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.linkedin.com/sharing/share-offsite/?url=https://BlueeHole.github.io/post/pcl_1_intro/" title="Share on Linkedin" aria-label="Share on Linkedin">
           <i class="fab fa-linkedin" aria-hidden="true"></i>
         </a>
       </li>
@@ -423,9 +491,9 @@
     </div>
     <script type="text/javascript">
       var disqus_config = function() {
-        this.page.url = 'https:\/\/BlueeHole.github.io\/post\/chapter2introducing_shell\/';
+        this.page.url = 'https:\/\/BlueeHole.github.io\/post\/pcl_1_intro\/';
         
-          this.page.identifier = '\/post\/chapter2introducing_shell\/'
+          this.page.identifier = '\/post\/pcl_1_intro\/'
         
       };
       (function() {
@@ -461,7 +529,7 @@
       
         <li class="post-action">
           
-            <a class="post-action-btn btn btn--default tooltip--top" href="https://BlueeHole.github.io/post/pcl_1_intro/" data-tooltip="PCL笔记1：Introduction" aria-label="NEXT: PCL笔记1：Introduction">
+            <a class="post-action-btn btn btn--disabled">
           
               <i class="fa fa-angle-left"></i>
               <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
@@ -469,7 +537,7 @@
         </li>
         <li class="post-action">
           
-            <a class="post-action-btn btn btn--default tooltip--top" href="https://BlueeHole.github.io/post/%E6%B1%87%E7%BC%96/" data-tooltip="汇编" aria-label="PREVIOUS: 汇编">
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://BlueeHole.github.io/post/chapter2introducing_shell/" data-tooltip="【第二章】Introducing Shell Scripts" aria-label="PREVIOUS: 【第二章】Introducing Shell Scripts">
           
               <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
               <i class="fa fa-angle-right"></i>
@@ -487,19 +555,19 @@
     </li>
     
       <li class="post-action hide-xs">
-        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://BlueeHole.github.io/post/chapter2introducing_shell/" title="Share on Facebook" aria-label="Share on Facebook">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://BlueeHole.github.io/post/pcl_1_intro/" title="Share on Facebook" aria-label="Share on Facebook">
           <i class="fab fa-facebook-square" aria-hidden="true"></i>
         </a>
       </li>
     
       <li class="post-action hide-xs">
-        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://BlueeHole.github.io/post/chapter2introducing_shell/" title="Share on Twitter" aria-label="Share on Twitter">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://BlueeHole.github.io/post/pcl_1_intro/" title="Share on Twitter" aria-label="Share on Twitter">
           <i class="fab fa-twitter" aria-hidden="true"></i>
         </a>
       </li>
     
       <li class="post-action hide-xs">
-        <a class="post-action-btn btn btn--default" target="new" href="https://www.linkedin.com/sharing/share-offsite/?url=https://BlueeHole.github.io/post/chapter2introducing_shell/" title="Share on Linkedin" aria-label="Share on Linkedin">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.linkedin.com/sharing/share-offsite/?url=https://BlueeHole.github.io/post/pcl_1_intro/" title="Share on Linkedin" aria-label="Share on Linkedin">
           <i class="fab fa-linkedin" aria-hidden="true"></i>
         </a>
       </li>
@@ -530,19 +598,19 @@
   <ul class="share-options">
     
       <li class="share-option">
-        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2FBlueeHole.github.io%2Fpost%2Fchapter2introducing_shell%2F" aria-label="Share on Facebook">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2FBlueeHole.github.io%2Fpost%2Fpcl_1_intro%2F" aria-label="Share on Facebook">
           <i class="fab fa-facebook-square" aria-hidden="true"></i><span>Share on Facebook</span>
         </a>
       </li>
     
       <li class="share-option">
-        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2FBlueeHole.github.io%2Fpost%2Fchapter2introducing_shell%2F" aria-label="Share on Twitter">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2FBlueeHole.github.io%2Fpost%2Fpcl_1_intro%2F" aria-label="Share on Twitter">
           <i class="fab fa-twitter" aria-hidden="true"></i><span>Share on Twitter</span>
         </a>
       </li>
     
       <li class="share-option">
-        <a class="share-option-btn" target="new" href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2FBlueeHole.github.io%2Fpost%2Fchapter2introducing_shell%2F" aria-label="Share on Linkedin">
+        <a class="share-option-btn" target="new" href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2FBlueeHole.github.io%2Fpost%2Fpcl_1_intro%2F" aria-label="Share on Linkedin">
           <i class="fab fa-linkedin" aria-hidden="true"></i><span>Share on Linkedin</span>
         </a>
       </li>
